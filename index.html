@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>สุขสันต์วันเกิดแม่</title>
+<meta name="description" content="เว็บอวยพรวันเกิดแม่ มีพลุ ลูกโป่ง รูปภาพ และคลิปความทรงจำ">
+<meta name="theme-color" content="#1F0D2B">
+<meta property="og:title" content="สุขสันต์วันเกิดแม่">
+<meta property="og:description" content="เว็บอวยพรวันเกิดแม่ มีพลุ ลูกโป่ง รูปภาพ และคลิปความทรงจำ">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 28C4 19 3 10 9 6c4-2.5 7 0 7 3 0-3 3-5.5 7-3 6 4 5 13-7 22z' fill='%23FF6F91'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&family=Noto+Sans+Thai:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<header class="hero" id="hero">
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="balloons" id="balloons" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <p class="date-chip" id="dateChip">25 พฤศจิกายน 2569</p>
+
+    <h1 id="title">
+      <span class="w" style="--i:0">สุขสันต์</span>
+      <span class="w" style="--i:1">วันเกิด</span>
+      <span class="w" style="--i:2">แม่</span>
+    </h1>
+    <p class="tagline" id="tagline">ขอบคุณที่รักและดูแลเรามาตลอด</p>
+
+    <div class="cake-block">
+      <svg id="cake" class="cake" viewBox="0 0 240 230" role="img" aria-label="เค้กวันเกิดมีเทียนสามเล่ม">
+        <ellipse class="c-plate" cx="120" cy="212" rx="108" ry="12"/>
+        <rect class="c-bottom" x="30" y="140" width="180" height="68" rx="16"/>
+        <path class="c-icing" d="M30 156 q0-16 16-16 h148 q16 0 16 16 v2 q-10 14-22 0 q-10 16-22 0 q-10 16-22 0 q-10 16-22 0 q-10 16-22 0 q-10 16-22 0 q-10 14-22 0 z"/>
+        <circle class="c-dot" cx="62" cy="186" r="4"/><circle class="c-dot" cx="100" cy="192" r="4"/>
+        <circle class="c-dot" cx="140" cy="186" r="4"/><circle class="c-dot" cx="178" cy="192" r="4"/>
+        <rect class="c-top" x="60" y="98" width="120" height="48" rx="14"/>
+        <path class="c-icing" d="M60 112 q0-14 14-14 h92 q14 0 14 14 v2 q-9 12-18 0 q-9 14-18 0 q-9 14-18 0 q-9 14-18 0 q-9 14-18 0 q-9 12-18 0 z"/>
+        <rect class="c-candle" x="80" y="62" width="12" height="38" rx="4"/>
+        <rect class="c-candle alt" x="114" y="56" width="12" height="44" rx="4"/>
+        <rect class="c-candle" x="148" y="62" width="12" height="38" rx="4"/>
+        <line class="c-wick" x1="86" y1="62" x2="86" y2="56"/>
+        <line class="c-wick" x1="120" y1="56" x2="120" y2="50"/>
+        <line class="c-wick" x1="154" y1="62" x2="154" y2="56"/>
+        <path class="c-flame" d="M86 54 c-7-8-5-16 0-22 c5 6 7 14 0 22 z"/>
+        <path class="c-flame" d="M120 48 c-7-8-5-16 0-22 c5 6 7 14 0 22 z"/>
+        <path class="c-flame" d="M154 54 c-7-8-5-16 0-22 c5 6 7 14 0 22 z"/>
+      </svg>
+      <button id="blow" class="btn-gold" type="button">เป่าเทียน</button>
+      <p id="blowNote" class="blow-note" aria-live="polite">แตะปุ่มเพื่อเป่าเทียนให้แม่</p>
+    </div>
+
+    <section class="count" aria-label="นับถอยหลังวันเกิดแม่">
+      <p id="countLabel" class="count-label">อีกไม่นานถึงวันเกิดแม่</p>
+      <div id="tiles" class="tiles">
+        <div class="tile"><b id="d">0</b><span>วัน</span></div>
+        <div class="tile"><b id="h">00</b><span>ชั่วโมง</span></div>
+        <div class="tile"><b id="m">00</b><span>นาที</span></div>
+        <div class="tile"><b id="s">00</b><span>วินาที</span></div>
+      </div>
+      <p id="today" class="today" hidden></p>
+    </section>
+
+    <p class="hint">แตะที่ท้องฟ้าเพื่อจุดพลุ แตะลูกโป่งให้แตก</p>
+  </div>
+
+  <a class="cue" href="#wishes">เลื่อนลงดูข้อความและความทรงจำ</a>
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40 C240 80 480 0 720 30 C960 60 1200 10 1440 40 L1440 80 L0 80 Z"/>
+  </svg>
+</header>
+
+<main>
+  <section class="section" id="wishes">
+    <div class="wrap">
+      <h2 class="reveal">ข้อความถึงแม่</h2>
+      <p class="sub reveal">คำอวยพรจากทุกคนในครอบครัว</p>
+      <div class="wishes" id="wishList"></div>
+    </div>
+  </section>
+
+  <section class="section alt" id="memories">
+    <div class="wrap">
+      <h2 class="reveal">มุมรูปภาพ</h2>
+      <p class="sub reveal">ความทรงจำดี ๆ ที่เราเก็บไว้ด้วยกัน แตะรูปเพื่อดูภาพใหญ่</p>
+      <div class="photos" id="photos"></div>
+    </div>
+  </section>
+
+  <section class="section" id="clips">
+    <div class="wrap">
+      <h2 class="reveal">มุมคลิป</h2>
+      <p class="sub reveal">ย้อนดูช่วงเวลาที่แม่ยิ้ม</p>
+      <div class="videos" id="videos"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" id="foot"></footer>
+
+<button class="fab btn-gold" id="fab" type="button">ปล่อยพลุ</button>
+
+<dialog id="lightbox" aria-label="ดูรูปภาพ">
+  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="ปิด">ปิด</button>
+  <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="รูปก่อนหน้า">&#8249;</button>
+  <figure class="lb-fig">
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="รูปถัดไป">&#8250;</button>
+</dialog>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
