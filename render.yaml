@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: mom-birthday
-    runtime: static
-    staticPublishPath: .
